@@ -22,18 +22,9 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 h1 {
   font-size: 54px;
   color: black;
-}
-
-.aggregate {
-
 }
 
 .playlistComponent {
@@ -43,5 +34,4 @@ h1 {
 
 .playlist {
   flex:1;
-
 }
