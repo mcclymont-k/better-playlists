@@ -7,33 +7,33 @@ let fakeServerData = {
       {
         name: "Playlist A",
         songs: [
-          {name:'song1', duration: 1320},
-          {name:'song2', duration: 1320},
-          {name:'song 3', duration: 1320}
+          {name:'Song 1', duration: 1320},
+          {name:'Song 2', duration: 1320},
+          {name:'Song 3', duration: 1320}
         ]
       },
       {
         name: "Playlist B",
         songs: [
-          {name:'song1', duration: 1320},
-          {name:'song2', duration: 1320},
-          {name:'Todge 3', duration: 1320}
+          {name:'Song 1', duration: 1320},
+          {name:'Song 2', duration: 1320},
+          {name:'Song 3', duration: 1320}
         ]
       },
       {
         name: "Playlist C",
         songs:[
-          {name:'song1', duration: 1320},
-          {name:'song2', duration: 1320},
-          {name:'song 3', duration: 1320}
+          {name:'Song 1', duration: 1320},
+          {name:'Song 2', duration: 1320},
+          {name:'Song 3', duration: 1320}
         ]
       },
       {
         name: "Playlist D",
         songs: [
-          {name:'song Fart', duration: 1320},
-          {name:'song2', duration: 1320},
-          {name:'Dingle', duration: 1320}
+          {name:'Song 1', duration: 1320},
+          {name:'Song 2', duration: 1320},
+          {name:'Song 3', duration: 1320}
         ]
       },
     ]
