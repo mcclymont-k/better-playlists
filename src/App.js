@@ -5,7 +5,7 @@ let fakeServerData = {
     name: 'David',
     playlists: [
       {
-        name: "Playlist A",
+        name: "The Bomb",
         songs: [
           {name:'Song 1', duration: 1320},
           {name:'Song 2', duration: 1320},
@@ -13,7 +13,7 @@ let fakeServerData = {
         ]
       },
       {
-        name: "Playlist B",
+        name: "90's hits",
         songs: [
           {name:'Song 1', duration: 1320},
           {name:'Song 2', duration: 1320},
@@ -21,7 +21,7 @@ let fakeServerData = {
         ]
       },
       {
-        name: "Playlist C",
+        name: "Beach party",
         songs:[
           {name:'Song 1', duration: 1320},
           {name:'Song 2', duration: 1320},
@@ -29,7 +29,7 @@ let fakeServerData = {
         ]
       },
       {
-        name: "Playlist D",
+        name: "Woop Woop",
         songs: [
           {name:'Song 1', duration: 1320},
           {name:'Song 2', duration: 1320},
@@ -46,7 +46,7 @@ class PlaylistCounter extends Component {
       <div className='aggregate'>
         {/*Here we are checking if there is a playlists and if so
           then we add the <h2>  */}
-        <h2 style={{color: 'blue'}}>{this.props.playlists.length} Name
+        <h2 style={{color: 'blue'}}>{this.props.playlists.length} Playlists
         </h2>
       </div>
     );
@@ -64,8 +64,6 @@ class HoursCounter extends Component {
 
     return (
       <div>
-        {/*Here we are checking if there is a playlists and if so
-          then we add the <h2>  */}
         <h2 style={{color: 'blue'}}>
            {Math.round(totalDuration/60)} Hours
         </h2>
@@ -79,8 +77,9 @@ class Filter extends Component {
     return (
       <div>
         <img/>
-        <input type='text'/>
-        Filter
+        <input type='text' onKeyUp={event =>
+          this.props.onTextChange(event.target.value)
+        }/>
       </div>
     )
   }
@@ -92,7 +91,7 @@ class Playlist extends Component {
 
     return(
       <div className='playlist'>
-        <img/>
+        <img />
         <h2>{playlist.name}</h2>
         <ul>
           {playlist.songs.map(song =>
@@ -107,17 +106,32 @@ class Playlist extends Component {
 class App extends Component {
   constructor() {
     super();
-    this.state = {serverData: {}};
+    this.state = {
+      serverData: {},
+      filterText: ''
+    };
   }
 
   componentDidMount() {
     setTimeout (() => {
       this.setState({serverData: fakeServerData})
     }, 1000)
+
+    setTimeout (() => {
+      this.setState({filterText: ''})
+    }, 2000)
     }
 
   render() {
+
+    let playlistToRender = this.state.serverData.user ?
+    this.state.serverData.user.playlists.filter(playlist =>
+      playlist.name.toLowerCase().includes(
+        this.state.filterText.toLowerCase())
+    ): [];
     return (
+
+
       <div className="App">
         {/*  Here the comp is asking whether there is serverData before executing
           the h1 tags */}
@@ -126,21 +140,21 @@ class App extends Component {
             <h1>
                {this.state.serverData.user.name}'s Playlists
              </h1>
-             <PlaylistCounter playlists={this.state.serverData.user.playlists}/>
-             <HoursCounter playlists={this.state.serverData.user.playlists}/>
-            <Filter/>
+             <PlaylistCounter playlists={playlistToRender}/>
+             <HoursCounter playlists={playlistToRender}/>
+            <Filter onTextChange={text => this.setState({filterText: text})}/>
             <div className = 'playlistComponent'>
-              {
-                this.state.serverData.user.playlists.map(playlist =>
-                  <Playlist playlist={playlist}/>
-                )
+
+              {playlistToRender.map(playlist =>
+                <Playlist playlist={playlist}/>
+              )
               }
 
             </div>
         </div> : <h1>LOADING...</h1>
       }
       </div>
-      // </div>
+
     );
   }
 }
