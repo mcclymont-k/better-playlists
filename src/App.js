@@ -128,31 +128,27 @@ class App extends Component {
     this.state.serverData.user.playlists.filter(playlist =>
       playlist.name.toLowerCase().includes(
         this.state.filterText.toLowerCase())
-    ): [];
+      ): [];
+
     return (
-
-
       <div className="App">
-        {/*  Here the comp is asking whether there is serverData before executing
-          the h1 tags */}
+      {/* Here the comp is asking whether there is serverData before executing */}
         {this.state.serverData.user ?
           <div>
             <h1>
                {this.state.serverData.user.name}'s Playlists
-             </h1>
-             <PlaylistCounter playlists={playlistToRender}/>
-             <HoursCounter playlists={playlistToRender}/>
+            </h1>
+            <PlaylistCounter playlists={playlistToRender}/>
+            <HoursCounter playlists={playlistToRender}/>
             <Filter onTextChange={text => this.setState({filterText: text})}/>
             <div className = 'playlistComponent'>
-
               {playlistToRender.map(playlist =>
                 <Playlist playlist={playlist}/>
-              )
+                )
               }
-
             </div>
-        </div> : <h1>LOADING...</h1>
-      }
+          </div> : <h1>LOADING...</h1>
+        }
       </div>
 
     );
