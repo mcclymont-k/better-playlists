@@ -25,7 +25,7 @@ class HoursCounter extends Component {
     return (
       <div>
         <h2 style={{color: 'blue'}}>
-           {Math.round(totalDuration/60)} Hours
+           {Math.round((totalDuration/ (60 * 60)) * 100) / 100} Hours
         </h2>
       </div>
     );
@@ -54,7 +54,7 @@ class Playlist extends Component {
         <img style={{'width': '200px', 'margin': '10px'}} src={playlist.imageURL}/>
         <h2>{playlist.name}</h2>
         <ul>
-          {playlist.songs.map(song =>
+          {playlist.songs.slice(0,3).map(song =>
             <li>{song.name}</li>
           )}
         </ul>
@@ -102,7 +102,12 @@ class App extends Component {
         let allTracksDataPromises = Promise.all(trackDataPromises)
         let playlistsPromise = allTracksDataPromises.then(trackDatas => {
           trackDatas.forEach((trackData, i) => {
-            playlists[i].trackData = trackData.items.map(item => item.track);
+            playlists[i].trackData = trackData.items
+            .map(item => item.track)
+            .map(trackData => ({
+              name: trackData.name,
+              duration: trackData.duration_ms / 1000
+            }))
           })
           return playlists
         })
@@ -112,11 +117,10 @@ class App extends Component {
         playlists: playlists.map(item => ({
           name: item.name,
           imageURL: item.images[0].url,
-          songs: item.trackData.slice(0,3).map(trackData => ({
-            name: trackData.name
-          }))
+          songs: item.trackData
         }))
       }))
+
 
 
 
