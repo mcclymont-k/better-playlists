@@ -3,3 +3,8 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.playlistComponent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
+}

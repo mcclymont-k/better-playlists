@@ -2,24 +2,8 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 100s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
+body {
+  background-color: grey;
 }
 
 h1 {
@@ -34,4 +18,19 @@ h1 {
 
 .playlist {
   flex:1;
+}
+
+.playlistComponent {
+  margin: auto;
+  width: 80vw;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  margin-top: 40px;
+  grid-gap:20px;
+}
+
+.playlist {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
 }
